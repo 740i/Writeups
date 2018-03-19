@@ -1,5 +1,5 @@
 ﻿### Vulnix Writeup
-So today we will try the Vulnix machine by @rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
+So today it's the Vulnix machine by @rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
 
 So we start off with the usual nmap scan and get a few random services and no web server on this one.
 ```
@@ -21,7 +21,7 @@ PORT     STATE SERVICE  VERSION
 995/tcp  open  ssl/pop3 Dovecot pop3d                                                                 
 2049/tcp open  nfs_acl  2-3 (RPC #100227)  
 ```
-So we see some interesting things here, first off the nfs running on 2049 shows us a possible user named vulnix.
+Some interesting things here, first off the nfs running on 2049 shows us a possible user named vulnix.
 ```
 root@sushi:~# showmount -e 192.168.147.158
 Export list for 192.168.147.158:
