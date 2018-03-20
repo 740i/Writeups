@@ -1,2 +1,2 @@
 # Writeups
-Machines from Vulnhub and Hackthebox.eu
+Minimalist walkthroughs of machines from Vulnhub and Hackthebox.eu
