@@ -38,8 +38,8 @@ PORT      STATE SERVICE      VERSION
 
 It also appears to have some web servers running on ports 8080, 1337, and 47001 so lets start checking those out. Ports 47001 and 1337 give us a 404 error and a default IIS page so we move onto 8080 and notice a blog entitled "Tossed Salad"...
 
-1.png insert salad toss screen here
-![](pics/1.png)
+
+![](pics/1.PNG)
 
 No comments in the source, no robots.txt, and it appears to have a bit of default content after a couple of salad tossing posts. We try the login page with admin:admin and some other crap passwords, no dice. So at this point we fire up dirsearch against these web servers while we continue to look around the box.
 ```
@@ -61,8 +61,8 @@ Target: 10.10.10.52:1337
 ```
 So that looks good a directory named "secure_notes".
 
-insert 2.png secure notes pic
-![](pics/2.png)
+
+![](pics/2.PNG)
 
 We have a web.config that leads to nothing and a dev_notes file with some interesting content about setting up this Tossed Salad blog with its OrchardCMS and MSSQL.
 ```
