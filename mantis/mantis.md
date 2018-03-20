@@ -222,7 +222,7 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 C:\Windows\system32>whoami
 nt authority\system
 ```
-So that was fun, the box may have been patched as the James user was able to just psexec onto the machine for a system shell before which was the unintented method for this one. I've never actually used goldenPac before and have done this in the past by running Pykek and following along with articles like these
+So that was fun, the box may have been patched as the James user was able to just psexec onto the machine for a system shell before it was retired which was an unintented method for this one. I've never actually used goldenPac before and have done this in the past by running Pykek and following along with articles like these
 
 http://blog.liatsisfotis.com/knock-and-pass-kerberos-exploitation.html
 
