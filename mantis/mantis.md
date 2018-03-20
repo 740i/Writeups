@@ -194,7 +194,7 @@ CME          10.10.10.52:445 MANTIS          james (1103)/LogonCount: 26
 ```
 ### MS14-068
 
-So lets try this account with another Impacket tool, goldenPac. First add these two lines to /etc/hosts
+So lets try this account with another impacket tool, goldenPac, against the kerberos on this machine. First add these two lines to /etc/hosts
 ```
 10.10.10.52  mantis.htb.local
 10.10.10.52  htb.local
