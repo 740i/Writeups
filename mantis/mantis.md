@@ -223,7 +223,9 @@ C:\Windows\system32>whoami
 nt authority\system
 ```
 So that was fun, I've never actually used goldenPac before and have done this in the past by running Pykek and following along with articles like these
+
 http://blog.liatsisfotis.com/knock-and-pass-kerberos-exploitation.html
+
 https://www.trustedsec.com/2014/12/ms14-068-full-compromise-step-step/
 
 So thanks to Hackthebox.eu for all the great machines, and lkys37en for creating this one was a fun time.
