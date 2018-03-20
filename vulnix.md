@@ -1,5 +1,5 @@
 ﻿### Vulnix Writeup
-So today it's the Vulnix machine by @rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
+So today it's the Vulnix machine by rebootuser which you can find hosted at https://www.vulnhub.com/entry/hacklab-vulnix,48/
 
 So we start off with the usual nmap scan and get a few random services and no web server on this one.
 ```
@@ -188,6 +188,6 @@ trophy.txt
 bash-4.4# cat trophy.txt                           
 cc614640424f5bd60ce5d5264899c3be                   
 ```
-So that was pretty fun, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to @VulnHub and the author @rebootuser for the hard work.
+So that was pretty fun, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to VulnHub and the author rebootuser for the hard work.
 
 
