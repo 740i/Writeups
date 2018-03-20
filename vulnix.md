@@ -188,6 +188,6 @@ trophy.txt
 bash-4.4# cat trophy.txt                           
 cc614640424f5bd60ce5d5264899c3be                   
 ```
-That was pretty fun and difficult, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to VulnHub and the author Rebootuser for all the hard work.
+That was a good one for sure, having to reboot the machine was different and the rest of it was interesting learning a bit about and using nfs for the first time in awhile.  As always thanks to VulnHub and Rebootuser for all the hard work.
 
 
