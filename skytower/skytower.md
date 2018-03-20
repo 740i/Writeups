@@ -2,7 +2,7 @@
  
 Todays it's Skytower by Telspace which you can find over at Vulnhub, https://www.vulnhub.com/entry/skytower-1,96/
 
-So we start with the usual nmap scan and checkout what's going on.
+Start off with the usual nmap scan and checkout what's going on.
 
 ```
 nmap -v -sV -sC 192.168.56.101
@@ -23,15 +23,15 @@ PORT     STATE    SERVICE    VERSION
 |_http-title: ERROR: The requested URL could not be retrieved
 MAC Address: 08:00:27:54:4A:37 (Oracle VirtualBox virtual NIC)
 ```
-Ok then so a Squid, a webserver, and ssh. Checking out the website we see a Skytech Login form.
+So a Squid, a webserver, and ssh. Checking out the website we this Skytech Login form.
 
 ![](pics/1.PNG)
 
-So try admin' in the input box and it  shows us a sql error.
+First we try admin' in the input box and it shows us a sql error.
 ```
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''''' at line 1]
 ```
-So we try doing the usual ' OR 1=1# and get nothing. Checking the error message again it seems like OR is being filtered out.
+So we try doing the usual login bypasses ' OR 1=1# and get nothing. Checking the error message again it seems like OR is being filtered out.
 ```
 curl --data "email=admin&password=' OR 1=1#" http://192.168.56.101/login.php
 There was an error running the query [You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11#'' at line 1]
