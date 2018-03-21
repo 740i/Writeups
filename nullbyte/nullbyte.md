@@ -31,7 +31,7 @@ PORT    STATE SERVICE VERSION
 MAC Address: 00:0C:29:7C:B0:EE (VMware)
 ```
 Nothing crazy just ssh on a random port, rpc, and Apache. Checking the Apache we get a nice image file.
-insert 1.png
+
 
 ![](pics/1.PNG)
 
@@ -62,8 +62,7 @@ Image Size                      : 235x302
 Megapixels                      : 0.071
 ```
 Sure enough if you browse to this comment value we get an input box asking for a key, with another interesting comment in the source.
-insert 2.png
-insert 3.png
+
 
 ![](pics/2.PNG)
 
@@ -87,11 +86,11 @@ ID      Response   Lines      Word         Chars          Request
 04342:  C=200      6 L        14 W          145 Ch        "elite"
 ```
 Good stuff the password is "elite" then. Entering that we get to some kind of user search box, 420search.php
-insert 4.png
+
 ![](pics/4.PNG)
 
 So by accident I submit it with nothing and it spits back a couple employees...
-insert 5.png
+
 ![](pics/5.PNG)
 We also see a nice sql error if you submit with "". 
 ```
@@ -143,8 +142,9 @@ Possible Hashs:
 [+]  Domain Cached Credentials - MD4(MD4(($pass)).(strtolower($username)))
 ```
 So we just check that on hashtoolkit and its plaintext is "omega".
-insert 6.png
+
 ![](pics/6.PNG)
+
 Now that we might have the password for this ramses user, we try it against the phpmyadmin and the ssh running on the box. No dice for phpmyadmin but we can ssh in as ramses for low privileges. Looking around, the first thing we notice is ramses bash history.
 ```
 ramses@NullByte:~$ cat .bash_history
