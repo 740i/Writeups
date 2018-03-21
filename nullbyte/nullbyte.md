@@ -69,7 +69,7 @@ Sure enough if you browse to this comment value we get an input box asking for a
 ![](pics/3.PNG)
 
 
-So the password ain't that complex that's always good, we try some crappy passwords and get nothing. Time to fire up wfuzz against it.
+The password ain't that complex that's always good, but we try some crappy passwords and get nothing. Time to fire up wfuzz against it.
 ```
 root@sushi:~# wfuzz -c -w ~/seclists/Passwords/10k_most_common.txt --hl=8 -d "key=FUZZ" http://192.168.147.166/kzMb5nVYJw/index.php 
 ********************************************************
