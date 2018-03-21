@@ -264,7 +264,7 @@ Gms=
 =PiAQ
 -----END PGP PUBLIC KEY BLOCK-----
 ```
-Thanks ly0n that was pretty sweet with a nice variety of things to acomplish even though we got lazy and ended up using sqlmap. And as always thanks to the Vulnhub crew.
+Thanks ly0n that was pretty sweet with a nice variety of things to do even though we got lazy and ended up using sqlmap. And as always thanks to the Vulnhub crew.
 
 
 
