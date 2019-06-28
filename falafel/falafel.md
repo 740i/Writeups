@@ -77,7 +77,7 @@ Dear develpors, fix this broken site ASAP.
 	~admin
 ```
 So we see that chris can login as admin with no password, even with the "cyber protections". So let's look at the two parameters on the login form next for bypasses and/or sql injection. We can save the request in burp and feed it to sqlmap:
-```php
+```
 POST /login.php HTTP/1.1
 Host: 10.10.10.73
 User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36
@@ -152,7 +152,7 @@ Connection: Keep-Alive
 
 After messing around for awhile, we try to upload something with a very long name, and we notice that anything over 236 characters the file name gets truncated down. Knowing this, we can try to create a php file that ends in .php.png and is 240 characeters long which allows the upload function to go through properly and will get saved with a normal .php extension. 
 
-```php
+```
 POST /upload.php HTTP/1.1
 Host: 10.10.10.73
 User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36
