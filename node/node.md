@@ -164,7 +164,6 @@ app.config(function ($routeProvider, $locationProvider) {
 
 http://10.10.10.58:3000/partials/admin.html takes us to some kind of backup download page, but we need to be admin user of course for it to do much. 
 
-insert downloadbackup.png
 ![](pics/downloadbackup.PNG)
 
 
