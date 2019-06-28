@@ -23,7 +23,7 @@ PORT      STATE SERVICE VERSION
 |_http-title: Hacking Trends
 ```
 Looking at the webserver it gives us a "brainpan.exe" sitting in the /bin directory. 
-![](pics/1.PNG) pic of mario goes here
+![](pics/1.png) 
 Alas it's nothing just an image file we can rename it .jpg and open it sorry Mario.
 
 Moving on we check out whatever this is running on port 9999 and it let's us login as the guest account:
@@ -110,23 +110,22 @@ There is no objdump, strings, or gcc which will be a pain in the ass later so le
 
 ![](pics/pattern.PNG)
 ![](pics/patts.PNG)
-insert  pattern and patts screenshot about offsets
+
 
 It also seems that there are no exploit mitigations, at least compiled into it:
 
-insert checksec screenshot
 ![](pics/checksec.PNG)
 
 Let's make sure we can overwrite into EIP at offset 14 with some garbage and then see if our C's end up somewhere we can put shellcode.
 
 ![](pics/overflw.PNG)
-insert overflw screenshot
+
 
 
 Looking down the stack we can see our C's at the bottom down by the environment variables, if we replace the C's with some nops and shellcode then jump into there it should work right? 
 
 ![](pics/stack.PNG)
-insert stack screenshot
+
 
 Let's try pointing EIP at 0xbffff1ba with some padded shellcode and it should slide right into it. We try first with this shellcode here: http://shell-storm.org/shellcode/files/shellcode-811.php
 ```bash
