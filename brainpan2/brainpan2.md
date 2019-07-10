@@ -112,9 +112,6 @@ There is no objdump, strings, or gcc which will be a pain in the ass later so le
 ![](pics/patts.PNG)
 
 
-It also seems that there are no exploit mitigations, at least compiled into it:
-
-![](pics/checksec.PNG)
 
 Let's make sure we can overwrite into EIP at offset 14 with some garbage and then see if our C's end up somewhere we can put shellcode.
 
