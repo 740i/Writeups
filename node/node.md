@@ -68,7 +68,7 @@ QQQQQQQWQQQWQQQQQQWQQQWQQQQQWQQQQQQQQQQQQQQQQWQQQQQWQQQWWWQQQQQQQQQQQQQQQWQ
 <!-- UzKbQ9iCpuYXcA2iJ6ULHq1M3qKIo9UCc9oa8gP39T08j0v1Qw8aAXrTRbi2JYAgdds1m6sYF3J9408UwecJDOaebvQcGDwU4eGwkQ9x4SUN2O9mE5SBhTyhKH2RgXjL03pcVnzw0n6wjf08BpQI1PDsphFyHO4aRkXEFIVObU3qMBuWXmy6qOagQcJu87KLV0CX7SI$
 ```
 
-So with those tools being a pain we can try using the site map in burp and spider the host. At /api/users/latest and we can see 3 accounts on the blog and some hashes. None of these are marked "is_admin".
+So with those tools being a pain we can try using the site map in burp and spider the host. At /api/users/latest and we can see the 3 accounts on the blog and some hashes. None of these are marked "is_admin".
 ```javascript
 HTTP/1.1 200 OK
 X-Powered-By: Express
@@ -294,7 +294,7 @@ tom       1217  0.0  6.5 1022184 49328 ?       Ssl  Jun21   0:11 /usr/bin/node /
 tom       1223  0.0  6.1 1074616 46960 ?       Ssl  Jun21   0:11 /usr/bin/node /var/scheduler/app.js
 mark     16278  0.0  0.1  14228   992 pts/0    S+   01:16   0:00 grep --color=auto tom
 ```
-Taking a quick glance it seems to be some kind of task scheduler code:
+Taking a quick glance it seems to be some kind of task scheduler javascript code:
 ```javascript 
 mark@node:/var/backups$ cat /var/scheduler/app.js 
 const exec        = require('child_process').exec;
