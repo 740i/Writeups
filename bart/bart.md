@@ -63,12 +63,12 @@ The page has a csrf token but it doesn't seem to be changing with each request. 
 
 ![](pics/servermonitor.JPG)
 
-Looking at it closer, you can see another subdomain at internal-01.bart.htb and add it to our host file. 
+Looking at it closer, you can see another subdomain at internal-01.bart.htb and add it to our /etc/host file. 
 
 
 ![](pics/internalmonitor.JPG)
 
-Another quick check for things on that internal-01.bart.htb and there is this log.txt file that contains 1 record of harvey and his user agent.
+Another quick check for things on that internal-01.bart.htb and there is this log.txt file that contains 1 record of Harvey and his user agent.
 ```bash
 $ dirsearch.py -u http://internal-01.bart.htb -e php,txt
 
@@ -124,7 +124,7 @@ So his password is Password1 and we can login, once inside we see a short talk b
 
 ![](pics/chatroom.JPG)
 
-Checking out the source here it's pretty barren except for this log_link script that is sending a GET to log.php including log.txt with a filename= parameter. If we try to issue this request and include a different file, we get a file put contents php error to popup. As we noticed in log.txt, it seems to be one entry with harvey's name and his user agent. We might be able to change our user agent to some php code, then hope it gets placed into the log.txt file as our new user agent and it will be a classic log poison situation. 
+Checking out the source here it's pretty barren except for this log_link script that is sending a GET to log.php including log.txt with a filename= parameter. If we try to issue this request and include a different file, we get a file put contents php error to popup. As we noticed in log.txt, it seems to be one entry with Harvey's name and his user agent. We might be able to change our user agent to some php code, then hope it gets placed into the log.txt file as our new user agent and it will be a classic log poison situation. 
 ```html
 <!-- <div id="title"><h1>[DEV] Internal Chat</h1></div>
 <div id="title"><h1>Internal use only</h1></div> -->
@@ -345,7 +345,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoLog
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\VolatileUserMgrKey
 ```
 
-So with that password we can do a PSSession as administrator user then either cat root.txt or get an elevated shell back with multi handler again.
+So with that password we can do a PSSession as the administrator user then either cat root.txt or get an elevated shell back with multi handler again.
 
 ```powershell
 C:\Users\Public>powershell
@@ -382,7 +382,7 @@ Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 h.potter:1003:aad3b435b51404eeaad3b435b51404ee:64f12cddaa88057e06a81b54e73b949b:::
 privileged:1004:aad3b435b51404eeaad3b435b51404ee:eb6389c942e5f8ec62d4a8118dcd0dbc:::
 ```
-Whoohoo it's all over
+
 
 ![](pics/trapbart.JPG)
 
