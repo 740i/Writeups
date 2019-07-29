@@ -23,7 +23,11 @@ PORT     STATE SERVICE VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-SSH and a webserver nice. So we run dirsearch against the nodejs site and get a bunch of 200 respsonses for everything in our wordlist, something seems wrong. If we use dirbuster or gobuster it gets blacklisted based on the default user agents and we get an ascii art troll face and some base64 that is garbage back in the response. We can see this clearer if we proxy the brute forcing through burp or use curl.
+SSH and a webserver nice. The nodejs MyPlace blog looks like a couple users and a login form with nothing much else at this point.
+
+![](pics/nodemyplace.JPG)
+
+So we run dirsearch against the nodejs site and get a bunch of 200 respsonses for everything in our wordlist, something seems wrong. If we use dirbuster or gobuster it gets blacklisted based on the default user agents and we get an ascii art troll face and some base64 that is garbage back in the response. We can see this clearer if we proxy the brute forcing through burp or use curl.
 ```bash 
 root@sushi:~/hackthebox/node# curl -H 'User-Agent: Dirbuster' 10.10.10.58:3000                                                                                                                               
 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ                                                                                                                                  
