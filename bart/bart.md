@@ -20,7 +20,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 ```
 Just IIS running on what looks like a windows 10 machine that redirects to forum.bart.htb. We do a quick check for any php files sitting on the web server.
 ```bash
-$ dirsearch.py -u 10.10.10.81 -e php
+$ dirsearch.py -u 10.10.10.81 -e php -f
 
  _|. _ _  _  _  _ _|_    v0.3.8
 (_||| _) (/_(_|| (_| )
@@ -103,7 +103,7 @@ Target: http://internal-01.bart.htb
 
 ![](pics/useragent.JPG)
 
-We visist the internal-01.bart.htb address now and we get to another login panel.
+We visit the internal-01.bart.htb address now and we get to another login panel.
 ![](pics/internalloginpanel.JPG)
 
 
