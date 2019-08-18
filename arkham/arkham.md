@@ -25,8 +25,9 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 It's shaping up like SMB and a webserver on windows this time around. The Mask Inc. site is some kind of garbage vendor selling identity protection software, there is nothing much there on any page except for an email subscribe function. Looking at it's source, we can see a java serialized object as a hidden viewstate parameter. We start reading about serialization issues while moving forward https://www.alphabot.com/security/blog/2017/java/Misconfigured-JSF-ViewStates-can-lead-to-severe-RCE-vulnerabilities.html
 
-insert screens of blog and source 
+
 ![](pics/mask.JPG)
+
 ![](pics/viewstate.JPG)
 
 Checking for anything on the shares, there is an appserver.zip that we can download and see whats inside. 
@@ -237,7 +238,7 @@ alfred@arkham.local.ost: Microsoft Outlook email folder
 ```
 Loading this file into windows OST PST viewer, we see Alfred emailing a picture of Master Wayne's password. That's never a good idea. 
 
-insert picture of bruces password
+
 ![](pics/email.JPG)
 
 We can take Batman's password and do a PSsession with these three lines.
@@ -440,7 +441,7 @@ C:\Users\Batman\Desktop>type C:\Users\Administrator\Desktop\root.txt
 type C:\Users\Administrator\Desktop\root.txt
 REDACTED
 ```
-![](pics/asylum.JPG)
+![](pics/asylum.jpg)
 
 Another easier way here for root.txt is mapping c$ as Batman and we can read it. 
 ```cmd
