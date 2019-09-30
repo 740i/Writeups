@@ -389,7 +389,8 @@ Menu
 ```
 
 ```bash
-$ file /usr/local/bin/shineon                                                               /usr/local/bin/shineon: ELF 32-bit LSB shared object, Intel 80386, version 1
+$ file /usr/local/bin/shineon
+/usr/local/bin/shineon: ELF 32-bit LSB shared object, Intel 80386, version 1
 ```
 
 
@@ -602,8 +603,10 @@ uid=1004(DavidGilmour) gid=1004(DavidGilmour) groups=1004(DavidGilmour), 1(daemo
 ```
 Hmm so what permissions have been changed? A quick look for anything modified in the last few minutes.
 ```bash
-$ find / -mmin -10 -type f 2>/dev/null                                                         
-/etc/sudoers                                                                                /var/cron/log                                                                               /var/log/pflog                                        
+$ find / -mmin -10 -type f 2>/dev/null
+/etc/sudoers
+/var/cron/log
+/var/log/pflog                                        
 ```
 Looks like the sudoers file has changed somehow it might be all over.
 
