@@ -1,6 +1,8 @@
-## Ghoul - HacktheBox
+## Ghoul - HacktheBox 
 
 Another machine by MinatoTW and egre55, this one really kicked my ass and I would not have finished without a little help from everyone on htb. But it's the good kind of pain.
+
+![](pics/ken.gif)
 
 ```bash
 PORT     STATE SERVICE VERSION
@@ -108,7 +110,7 @@ ls: cannot open directory '/home/kaneki': Permission denied
 ls: cannot open directory '/home/noro': Permission denied
 ```
 
-We notice .dockerenv in / so I guess we have some docker conatiners on this one again...Since different versions of ssh are running on two different ports, we can assume now one is going to a container. After that we see the 3 users have private keys and some other files in /var/backups/.
+We notice .dockerenv in / so I guess we have some docker containers on this one again...Since different versions of ssh are running on two different ports, we can assume now one is going to a container. After that we see the 3 users have private keys and some other files in /var/backups/.
 
 ```bash 
 $ ls -lah
@@ -264,7 +266,7 @@ eth1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX packets 186  bytes 38476 (38.4 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
-After not finding much on the system, we notice this ssh as root happening.
+After not finding much on the system we notice this ssh as root happening.
 ```bash
 kaneki_pub@kaneki-pc:~/.ssh$ ps -ef
 UID         PID   PPID  C STIME TTY          TIME CMD
@@ -524,7 +526,7 @@ drwx------ 1 kaneki_pub kaneki     4.0K Dec 16  2018 ssh-jDhFSu7EeAnz
 -rw------- 1 root       root        400 Oct 20 00:05 sshd-stderr---supervisor-r1qP83.log
 -rw------- 1 root       root          0 Oct 20 00:05 sshd-stdout---supervisor-kotUsu.log
 ```
-These two articles here explain this trick and the issues with agent forwarding well, https://www.clockwork.com/news/2012/09/28/602/ssh_agent_hijacking/ and https://xorl.wordpress.com/2018/02/04/ssh-hijacking-for-lateral-movement/ as we can replicate that attack from stealing the ssh-agent socket, then login with no password as root on the last docker container.
+These two articles here explain this trick and the issues with agent forwarding well, https://www.clockwork.com/news/2012/09/28/602/ssh_agent_hijacking/ and https://xorl.wordpress.com/2018/02/04/ssh-hijacking-for-lateral-movement/ as we can replicate that attack from stealing the ssh-agent socket then login with no password as root on the last docker container.
 
 ```bash
 root@kaneki-pc:/tmp# cd ssh-GGoXs4gR36/
@@ -560,7 +562,7 @@ root@Aogiri:~#
 ![](pics/killer.gif)
 
 
-So that was quite the rollercoaster of emotions with a little bit of everything in some of these steps like the zip slip and ssh agent phases being really interesting and new for me. I would not have figured some of that out without nudges and hints from the htb forums and discord. Super fun as always with MinatoTW and egre55 boxes in my opinion always seem to be well thought out and really hard, thanks for making all of them. 
+So that was quite the rollercoaster of emotions with a little bit of everything in some of these steps like the zip slip and ssh agent phases being really interesting and new for me. I would not have figured some of this out without nudges and hints from the htb forums and discord thanks to everyone who hangs out there. Super fun as always with MinatoTW and egre55 boxes in my opinion always seem to be well thought out and really hard, thanks for making all of them. 
 
 
 
