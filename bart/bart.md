@@ -386,9 +386,7 @@ privileged:1004:aad3b435b51404eeaad3b435b51404ee:eb6389c942e5f8ec62d4a8118dcd0db
 
 ![](pics/trapbart.JPG)
 
-I guess we skipped user.txt here, it was in h.potters home folder which we couldn't access with our first shell but now we're admin so it doesn't matter. We should have noticed the WinRM service running on port 5985 and reused Harvey's credentials there for a quick path to the user shell. We could have avoided our troubles getting an x64 shell in metasploit by just dropping a binary like netcat somewhere but it's nice to not do that and maintain some sort of stealth. There is also a metasploit module I just learned about, smb delivery, that is basically a wrapper for the whole process of running a dll over smb and could have saved us a bit of time as well. 
-
-Thanks mrh4sh for the machine I really enjoyed it, nothing super complicated or trollish just lots of short steps to get through this one with a few rabbit holes and things to slow you down. 
+I guess we skipped user.txt here, it was in h.potters home folder which we couldn't access with our first shell but now we're admin so it doesn't matter. We should have noticed the WinRM service running on port 5985 and reused Harvey's credentials there for another quick path to the user shell. Thanks mrh4sh for the machine I really enjoyed it, nothing super complicated or trollish just lots of short steps to get through this one with a few rabbit holes and things to slow you down. 
 
 
 
